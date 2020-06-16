@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class MainPageTest {
-
+//Метод поиска и добавления книг в корзину
     @BeforeSuite
     public static void search() {
         com.codeborne.selenide.Configuration.baseUrl = "https://www.chitai-gorod.ru";
@@ -23,14 +23,14 @@ public class MainPageTest {
         collection.get(1).click();
         collection.get(2).click();
     }
-
+//Метод подсчёта книг
     @Test
     public void checkCountOfBooks() {
         String element = $(By.xpath("//span[contains(@class,'basket__item-count')]")).getText();
         int a = Integer.parseInt(element);
         Assert.assertEquals(a,3);
     }
-
+//Метод определения объектов в корзине
     @Test
     public void basketInfo() {
         $(By.xpath("//a[@class='basket__logo']//img")).click();
@@ -38,7 +38,7 @@ public class MainPageTest {
         ElementsCollection collection = $$(By.xpath("//div[@class='basket-item__wrapper']"));
         Assert.assertEquals(collection.size(),3);
     }
-
+//Метод проверки стоимости книг, итоговой стоимости
     @Test
     public void checkPriceOfBooks() {
         $(By.xpath("//a[@class='basket__logo']//img")).click();
@@ -58,7 +58,7 @@ public class MainPageTest {
         int a = Integer.parseInt(totalPrice);
         Assert.assertEquals(getPrice, a);
     }
-
+//Метод удаления книги
     @Test
     public void deleteBook() {
         $(By.xpath("//a[@class='basket__logo']//img")).click();
@@ -68,7 +68,7 @@ public class MainPageTest {
         int a = Integer.parseInt(element);
         Assert.assertEquals(a,2);
     }
-
+//Метод проверки итоговой стоимости после удаления книги
     @Test
     public void checkPriceOfBooksAfterRemovingBook() {
         $(By.xpath("//div[contains(@class,'basket-item__control_delete')]/i")).click();
